@@ -1,6 +1,6 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 
 const liveReport = {
@@ -43,9 +43,14 @@ const liveReport = {
   unmatchedPayments: [],
 };
 
+beforeEach(() => {
+  window.history.replaceState({}, "", "/app");
+});
+
 afterEach(() => {
   cleanup();
   vi.restoreAllMocks();
+  window.history.replaceState({}, "", "/");
 });
 
 describe("SettleTally workspace", () => {
@@ -76,5 +81,16 @@ describe("SettleTally workspace", () => {
     render(<App />);
     await user.click(screen.getByRole("button", { name: /Run reconciliation/ }));
     expect(screen.getByRole("alert").textContent).toContain("Enter a valid Arc wallet address");
+  });
+});
+
+describe("SettleTally landing page", () => {
+  it("directs visitors into the dedicated application", () => {
+    window.history.replaceState({}, "", "/");
+    render(<App />);
+
+    expect(screen.getByRole("heading", { name: "Know what settled. Know what did not." })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /Start a reconciliation/ }).getAttribute("href")).toBe("/app");
+    expect(screen.queryByRole("button", { name: /Run reconciliation/ })).toBeNull();
   });
 });
