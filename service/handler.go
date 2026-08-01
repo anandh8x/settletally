@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"settletally/internal/api"
-	"settletally/internal/reconcile"
+	api "settletally/httpapi"
+	"settletally/reconcile"
 )
 
 func NewHandler(logger *slog.Logger) http.Handler {

@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"settletally/internal/reconcile"
+	"settletally/reconcile"
 )
 
 type fakeChain struct {

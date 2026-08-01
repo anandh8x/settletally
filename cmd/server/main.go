@@ -11,7 +11,7 @@ import (
 	"syscall"
 	"time"
 
-	"settletally/internal/service"
+	"settletally/service"
 )
 
 func main() {

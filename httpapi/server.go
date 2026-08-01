@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"settletally/internal/reconcile"
+	"settletally/reconcile"
 )
 
 const (

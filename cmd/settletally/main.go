@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"settletally/internal/reconcile"
+	"settletally/reconcile"
 )
 
 func main() {

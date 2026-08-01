@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"settletally/internal/service"
+	"settletally/service"
 )
 
 var app = service.NewHandler(slog.New(slog.NewJSONHandler(os.Stdout, nil)))
