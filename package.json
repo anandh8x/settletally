@@ -1,0 +1,39 @@
+{
+  "name": "settletally",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.1.2",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev:web": "vite --config web/vite.config.ts",
+    "dev:api": "go run ./cmd/server",
+    "build": "tsc -b web/tsconfig.json && vite build --config web/vite.config.ts",
+    "typecheck": "tsc -b web/tsconfig.json --pretty false",
+    "test:web": "vitest run --config web/vite.config.ts",
+    "test:go": "GOCACHE=${GOCACHE:-/tmp/settletally-go-cache} go test ./...",
+    "verify": "pnpm typecheck && pnpm test:web && pnpm build && pnpm test:go"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "jsdom": "^26.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^7.0.0",
+    "vitest": "^3.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}
