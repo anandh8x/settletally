@@ -109,38 +109,56 @@ export function App() {
           <span>SettleTally</span>
         </a>
         <nav aria-label="Primary navigation">
-          <a href="#workspace">Workspace</a>
-          <a href="#method">Method</a>
+          <a href="#workspace">Product</a>
+          <a href="#method">How it works</a>
         </nav>
-        <div className={`network-pill ${serviceState}`}><span /> {serviceState === "online" ? "Arc service ready" : serviceState === "offline" ? "Service offline" : "Checking service"}</div>
+        <div className="topbar-actions">
+          <div className={`network-pill ${serviceState}`}><span /> {serviceState === "online" ? "Arc service ready" : serviceState === "offline" ? "Service offline" : "Checking service"}</div>
+          <a className="header-action" href="#workspace">Open workspace <span>↘</span></a>
+        </div>
       </header>
 
       <main id="top">
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">USDC RECONCILIATION FOR ARC</p>
-            <h1>Know what settled.<br /><em>Know what needs attention.</em></h1>
+            <p className="eyebrow"><span /> BUILT FOR ARC USDC</p>
+            <h1>Every settlement,<br />accounted for.</h1>
             <p className="hero-lede">
-              Match invoices and payout records against public Arc activity. SettleTally explains every match and isolates missing, partial, duplicate, and ambiguous payments.
+              Turn public Arc activity into a finance-ready reconciliation report. Match invoices and payouts, explain every result, and find exceptions before they reach your books.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#workspace">Start a reconciliation <span>↘</span></a>
+              <a className="button button-primary" href="#workspace">Reconcile payments <span>→</span></a>
               <button className="text-action" type="button" onClick={loadLiveDemo}>Load a verified Arc transaction</button>
             </div>
+            <div className="hero-proof" aria-label="Product capabilities">
+              <span>Read-only</span>
+              <span>Deterministic matching</span>
+              <span>Exportable reports</span>
+            </div>
           </div>
-          <div className="hero-ledger" aria-label="Illustration of expected records matching Arc settlements">
-            <div className="ledger-heading"><span>RECONCILIATION RUN</span><b>ARC / USDC</b></div>
-            <div className="ledger-row"><span className="ledger-code">INV-1042</span><span className="route route-good" /><span className="ledger-state good">MATCHED</span></div>
-            <div className="ledger-row"><span className="ledger-code">PAY-0088</span><span className="route route-warn" /><span className="ledger-state warn">PARTIAL</span></div>
-            <div className="ledger-row"><span className="ledger-code">INV-1059</span><span className="route route-open" /><span className="ledger-state open">MISSING</span></div>
-            <div className="ledger-foot"><span>Expected records</span><strong>03</strong><span>Exceptions</span><strong>02</strong></div>
+          <div className="report-preview" aria-label="Preview of a SettleTally reconciliation report">
+            <div className="preview-toolbar">
+              <div className="window-dots" aria-hidden="true"><i /><i /><i /></div>
+              <span>INTERFACE PREVIEW</span>
+              <b><i /> ARC TESTNET</b>
+            </div>
+            <div className="preview-summary">
+              <div><span>EXPECTED</span><strong>$24,840.00</strong><small>18 records</small></div>
+              <div><span>RECONCILED</span><strong>$23,690.00</strong><small>95.4% confirmed</small></div>
+              <div><span>NEEDS REVIEW</span><strong>$1,150.00</strong><small>2 exceptions</small></div>
+            </div>
+            <div className="preview-table-head"><span>REFERENCE</span><span>SETTLED</span><span>RESULT</span></div>
+            <div className="preview-payment"><strong>INV-1042<small>0x71a4…a91e</small></strong><span>$12,500.00</span><b className="preview-status matched"><i /> Matched</b></div>
+            <div className="preview-payment"><strong>PAY-0088<small>0x0d83…4bc2</small></strong><span>$8,340.00</span><b className="preview-status matched"><i /> Matched</b></div>
+            <div className="preview-payment attention"><strong>INV-1059<small>0x9fe1…d023</small></strong><span>$1,150.00</span><b className="preview-status review"><i /> Review</b></div>
+            <div className="preview-footer"><span><i /> Arc data indexed</span><a href="#workspace">Open full workspace <b>↘</b></a></div>
           </div>
         </section>
 
         <section className="trust-strip" aria-label="Product boundaries">
-          <div><span>01</span><p><strong>No wallet connection</strong>Your address is read-only.</p></div>
-          <div><span>02</span><p><strong>No custody</strong>SettleTally cannot move funds.</p></div>
-          <div><span>03</span><p><strong>No silent guesses</strong>Every result includes a reason.</p></div>
+          <div><span className="trust-icon">⌁</span><p><strong>No wallet connection</strong>Your address is read-only.</p></div>
+          <div><span className="trust-icon">◇</span><p><strong>No custody</strong>SettleTally cannot move funds.</p></div>
+          <div><span className="trust-icon">✓</span><p><strong>No silent guesses</strong>Every result includes a reason.</p></div>
         </section>
 
         <section className="workspace" id="workspace">
