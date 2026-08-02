@@ -66,6 +66,7 @@ describe("SettleTally workspace", () => {
     await waitFor(() => expect(screen.getByText("Arc service ready")).toBeTruthy());
     await user.click(screen.getByRole("button", { name: "Use the live Arc test record" }));
     expect(screen.getByText("verified-arc-demo.csv")).toBeTruthy();
+    expect(screen.getByText(/1 record ready/)).toBeTruthy();
     expect(screen.getAllByDisplayValue("54787773")).toHaveLength(2);
 
     await user.click(screen.getByRole("button", { name: /Run reconciliation/ }));

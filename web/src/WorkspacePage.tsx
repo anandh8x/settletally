@@ -139,7 +139,7 @@ export function WorkspacePage() {
             >
               <input ref={inputRef} type="file" accept=".csv,text/csv" aria-label="Import expected records CSV" onChange={(event) => { const file = event.target.files?.[0]; if (file) void readFile(file); }} />
               <div className="upload-mark" aria-hidden="true">↑</div>
-              {records.length ? <><strong>{fileName}</strong><p>{records.length} records ready · {expectedTotal.toLocaleString("en-US", { maximumFractionDigits: 6 })} USDC expected</p></> : <><strong>Import expected records</strong><p>Drop a CSV here or select one from your computer.</p></>}
+              {records.length ? <><strong>{fileName}</strong><p>{records.length} {records.length === 1 ? "record" : "records"} ready · {expectedTotal.toLocaleString("en-US", { maximumFractionDigits: 6 })} USDC expected</p></> : <><strong>Import expected records</strong><p>Drop a CSV here or select one from your computer.</p></>}
               <button type="button" onClick={() => inputRef.current?.click()}>{records.length ? "Replace CSV" : "Choose CSV"}</button>
             </div>
             <button className="quiet-link" type="button" onClick={downloadTemplate}>Download CSV template <span>↓</span></button>
