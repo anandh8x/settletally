@@ -190,8 +190,8 @@ function Results({ report }: { report: Report }) {
   return <section className="results" id="results">
     <div className="results-head"><div><p className="kicker">Reconciliation complete</p><h2>{exceptions.length === 0 && report.unmatchedPayments.length === 0 ? awaiting > 0 ? "No unexpected exceptions." : "Everything accounted for." : "Attention has a clear address."}</h2><p>Blocks {report.fromBlock.toLocaleString()} to {report.toBlock.toLocaleString()} · generated {new Date(report.generatedAt).toLocaleString()}</p></div><div className="export-actions"><button type="button" onClick={exportCSV}>Export CSV ↓</button><button type="button" onClick={exportJSON}>Export JSON ↓</button></div></div>
     <div className="metric-grid">
-      <Metric label="EXPECTED" value={formatUSDC(report.expectedMicros)} note={`${report.expectedCount} records`} />
-      <Metric label="RECONCILED" value={formatUSDC(report.matchedMicros)} note={`${matched} exact matches`} tone="good" />
+      <Metric label="EXPECTED" value={formatUSDC(report.expectedMicros)} note={`${report.expectedCount} ${report.expectedCount === 1 ? "record" : "records"}`} />
+      <Metric label="RECONCILED" value={formatUSDC(report.matchedMicros)} note={`${matched} exact ${matched === 1 ? "match" : "matches"}`} tone="good" />
       <Metric label="REVIEW VALUE" value={formatUSDC(report.reviewMicros)} note={`${exceptions.length} need attention · ${awaiting} awaiting`} tone="warn" />
       <Metric label="UNMATCHED" value={formatUSDC(report.unmatchedMicros)} note={`${report.unmatchedPayments.length} Arc transfers`} tone="bad" />
       <Metric label="ARC FEES" value={formatUSDC(report.feeMicros)} note="paid by watched wallet" />

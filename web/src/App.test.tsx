@@ -71,6 +71,8 @@ describe("SettleTally workspace", () => {
 
     await user.click(screen.getByRole("button", { name: /Run reconciliation/ }));
     await waitFor(() => expect(screen.getByText("Everything accounted for.")).toBeTruthy());
+    expect(screen.getByText("1 record")).toBeTruthy();
+    expect(screen.getByText("1 exact match")).toBeTruthy();
     expect(screen.getAllByText("ARC-DEMO-54787773").length).toBeGreaterThan(0);
     expect(screen.getByText("exact Arc memo ID")).toBeTruthy();
     expect(fetchMock).toHaveBeenLastCalledWith("/api/v1/reconcile", expect.objectContaining({ method: "POST" }));
